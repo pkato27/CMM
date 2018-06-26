@@ -22,8 +22,12 @@
     <!--Links to Google Fonts and Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
+    <!--Moment.js-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script> 
+
     <!--Links to other files-->
     <link rel="stylesheet" type="text/css" href="assets/css/style_main.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style_gmap.css">
     <link type="text/javascript" src="assets/javascript.Main.js">
 
 
@@ -62,10 +66,10 @@
         <div class="col-lg-6">
 
             <!--Google Map-->
-            <div class="row"><div id="gMaps">Google</div></div>
+            <div class="row"><div id="map"></div></div>
 
             <!--College List-->
-            <div class="row"><div id="collegeList">list</div></div>
+            <div class="row"><div id="collegeList"></div></div>
         
         </div>
 
@@ -96,6 +100,78 @@
     </div>
     </div>
 
+    <script>
+
+        function initAutocomplete() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 37.090240, lng: -95.7129},
+            zoom: 3.8,
+            mapTypeId: 'roadmap'
+            });
+    
+            // Create the search box and link it to the UI element.
+            var input = document.getElementById('locationSearch');
+            var searchBox = new google.maps.places.SearchBox(input);
+    
+            // Bias the SearchBox results towards current map's viewport.
+            map.addListener('bounds_changed', function() {
+            searchBox.setBounds(map.getBounds());
+            });
+    
+            var markers = [];
+            // Listen for the event fired when the user selects a prediction and retrieve
+            // more details for that place.
+            searchBox.addListener('places_changed', function() {
+            var places = searchBox.getPlaces();
+    
+            if (places.length == 0) {
+                return;
+            }
+    
+            // Clear out the old markers.
+            markers.forEach(function(marker) {
+                marker.setMap(null);
+            });
+            markers = [];
+    
+            // For each place, get the icon, name and location.
+            var bounds = new google.maps.LatLngBounds();
+            places.forEach(function(place) {
+                if (!place.geometry) {
+                console.log("Returned place contains no geometry");
+                return;
+                }
+                var icon = {
+                url: place.icon,
+                size: new google.maps.Size(71, 71),
+                origin: new google.maps.Point(0, 0),
+                anchor: new google.maps.Point(17, 34),
+                scaledSize: new google.maps.Size(25, 25)
+                };
+    
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location
+                }));
+    
+                if (place.geometry.viewport) {
+                // Only geocodes have viewport.
+                bounds.union(place.geometry.viewport);
+                } else {
+                bounds.extend(place.geometry.location);
+                }
+            });
+            map.fitBounds(bounds);
+            });
+        }
+      
+    </script>
+
+
+
     <!--Pull javascript CDN -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -103,7 +179,12 @@
 
     <!--Run File Scripts-->
     <script type="text/javascript" src="assets/javascript/Category_Btn_Add.js"></script> 
-    <script type="text/javascript" src="assets/javascript/Main.js"></script> 
+    <script type="text/javascript" src="assets/javascript/Main.js"></script>
+
+
+    <!--Possibly Move above script to JS File-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA3XJDLX5SHurtiT0ceXGR6AWwerQv1Mws&libraries=places&callback=initAutocomplete"
+    async defer></script>
 
     </body>
 </html>
