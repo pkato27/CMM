@@ -51,13 +51,11 @@ var categoriesList = [
     }
 ]
 
-
 //populate initial category buttons
 function renderbuttons() {
 
     //ensure nothing prior exists
     $("#categoryButtons").empty();
-
 
     for (i=0; i<categoriesList.length; i++) {
 
@@ -70,6 +68,7 @@ function renderbuttons() {
             categoryButton.addClass("cat-btn");
             categoryButton.attr("position",i);
             categoryButton.attr("value",categoryID);
+            categoryButton.attr("name",category);
             categoryButton.attr("style","margin:5px;")
             categoryButton.text(category);
 
@@ -95,7 +94,8 @@ function subCategories() {
         var subcatButton = $("<button>");
         subcatButton.addClass("sub-cat-btn");
         subcatButton.attr("position",i);
-        subcatButton.attr("value",subcatID[i]); 
+        subcatButton.attr("value",subcatID[i]);
+        subcatButton.attr("name",subcatName[i])
         subcatButton.attr("style","margin:5px;");
         subcatButton.text(subcatName[i]);
 
@@ -103,7 +103,6 @@ function subCategories() {
         $("#secondaryButtons").append(subcatButton);
 
     }
-
 
 }
 
