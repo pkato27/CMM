@@ -113,8 +113,21 @@ function UpdateStats() {
             for (i=0;results.length;i++) {
 
                 var venue = results[i].name
+                var lat = results[i].location.lat
+                var lon = results[i].location.lat
 
-                $("#FunStats").append(i + ". " + venue + "    ")
+
+                var venueButton = $("<button>");
+                venueButton.addClass("venue-btn");
+                venueButton.attr("position",i);
+                venueButton.attr("style","margin:5px;")
+                venueButton.attr("value",venue);
+                venueButton.attr("lat",lat)
+                venueButton.attr("lon",lon)
+                venueButton.text(venue);
+
+
+                $("#FunStats").append(venueButton)
             }
 
         });
@@ -131,8 +144,10 @@ function UpdateStats() {
 
             //Append School Information to CollegeStats
             $("#CollegeStats").empty()
-            $("#CollegeStats").append("<div>Website: " + url + "</div>")
+            $("#CollegeStats").append("<div>Website: &nbsp</div><a href='https://" + url + "' target='_blank'>Click Here to Visit Webpage</a>")
 
         });
+
+
 
 }
