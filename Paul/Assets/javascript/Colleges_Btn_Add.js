@@ -45,25 +45,6 @@ function collegeSearch () {
             //Add category button
             $("#CollegeList").append(schoolButton);
         }
-
-        /*for (i=0; i<categoriesList.length; i++) {
-
-            //Pull category object info
-            var category = categoriesList[i].init_Name;
-            var categoryID = categoriesList[i].init_ID;
-
-            //create button with attributes and text
-                var categoryButton = $("<button>");
-                categoryButton.addClass("cat-btn");
-                categoryButton.attr("position",i);
-                categoryButton.attr("value",categoryID);
-                categoryButton.attr("style","margin:5px;")
-                categoryButton.text(category);
-
-                //Add category button
-                $("#CollegeList").append(categoryButton);
-
-        }*/
     }
 
     })

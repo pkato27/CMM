@@ -149,5 +149,47 @@ function UpdateStats() {
         });
 
 
+//
+$(document).on("click", ".venue-btn", venuePic);
+
+function venuePic() {
+
+        var venueName = $(this).attr("value")
+        var City = $("#CitySearch").val()
+        var State = $("#StateSearch").val()
+
+        $('#locationSearch').val(venueName);
+        
+        var venueURL = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + City +","+ State + " " + venueName + "&inputtype=textquery&fields=photo&key=AIzaSyA3XJDLX5SHurtiT0ceXGR6AWwerQv1Mws"
+        var queryURL = "https://cors-anywhere.herokuapp.com/" + venueURL
+
+ 
+
+        $.ajax({
+          url: queryURL,
+          method: "GET",
+          dataType: "json",
+
+          // this headers section is necessary for CORS-anywhere
+
+          headers: {
+            "x-requested-with": "xhr",
+          }
+
+        }).done(function(response) {
+
+          var photoRef = response.candidates[0].photos[0].photo_reference
+          var photoURL = "https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=" + photoRef +"&key=AIzaSyA3XJDLX5SHurtiT0ceXGR6AWwerQv1Mws"
+
+          $("#Photos").empty();
+          $("#Photos").append("<img src='" + photoURL +"'height=300px width=500px>");
+ 
+
+        }).fail(function(jqXHR, textStatus) {
+
+          console.error(textStatus)
+
+        }) 
+    }
 
 }

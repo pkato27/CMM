@@ -1,4 +1,4 @@
-#map {
+  #map {
     height: 400px;
     width: 600px;
   }
@@ -35,4 +35,11 @@
   }
   #target {
     width: 345px;
+  }
+
+  @media (max-width:1400px) {
+    #map {
+      height: 400px;
+      width: 400px;
+    }
   }
