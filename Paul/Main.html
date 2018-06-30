@@ -45,58 +45,8 @@
             <h1 class="display-4 animate tada" id="tada">The College Life!</h1>
             <p class="lead">Find Your Future! Find Your Experience! Find Your College!</p>
         </div>
-       <div>
-        <button type="button" id=favoritesList class="btn btn-primary" data-toggle="modal" data-target="#favoritesModal"> My Favorites</button>    
-       </div> 
     </div>
-
-    <!--Login-->
-		  <div class="modal fade login" id="loginModal">
-		    <div class="modal-dialog login animated">
-    		  <div class="modal-content">
-    		    <div class="modal-header">
-                    <h4 class="modal-title">Login</h4>
-                </div>
-
-            <div class="modal-body">
-              <div class="form loginBox">
-                  <form method="" action="" accept-charset="UTF-8">
-                      <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                      <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                      <input class="btn btn-default btn-login" type="button" data-dismiss="modal" value="Login" //onclick="loginAjax()">
-                  </form>
-              </div>
-                
-            <div class="box">
-              <div class="content registerBox" style="display:none;">
-                  <div class="form">
-                    <form method="" html="{:multipart=>true}" data-remote="true" action="" accept-charset="UTF-8">
-                      <input id="email" class="form-control" type="text" placeholder="Email" name="email">
-                      <input id="password" class="form-control" type="password" placeholder="Password" name="password">
-                      <input id="password_confirmation" class="form-control" type="password" placeholder="Repeat Password" name="password_confirmation">
-                      <input class="btn btn-default btn-register" type="button" data-dismiss="modal" value="Create account" name="commit">
-                    </form>
-                 </div>
-              </div>
-            </div>
                         
-            <div class="modal-footer">
-              <div class="forgot login-footer">
-                <span>Looking to <a href="javascript: showRegisterForm();">create an account</a>?</span>
-              </div>
-              <button type="button" class="btn btn-default" id="btnclose" data-dismiss="modal">Close</button>
-            </div>
-
-            <div class="forgot register-footer" style="display:none">
-              <span>Already have an account?</span>
-                <a href="javascript: showLoginForm();">Login</a>
-            </div>
-
-            </div>
-    	  </div>
-	     </div>
-        </div>
-
 
     <!--City and State Search-->
     <div class="row">
@@ -109,11 +59,6 @@
         <div class="col-md-2" id='simpleMargin'>
             <input id="StateSearch" type="text" class="form-control" placeholder="Enter State">
         </div>
-
-        <!--Favorites
-        <div class="col-md-5" id='simpleMargin'>
-            <button id="favButton" type="button" class="btn btn-dark" ><i class="fas fa-star"></i> Click Here to Show/Hide Favorites <i class="fas fa-star"></i></button>
-        </div>-->
     </div>
 
     <!--Map Search-->
@@ -167,7 +112,6 @@
             <div class="container">
                 <h5 class="row" id="CollegeSelected" value="None" style="color:aliceblue; background-color: black;"></h5>
                 <div class="row" id="CollegeStats" style="background-color:aliceblue;"></div>
-                <button class="btn btn-default" id="add-favorite" type="submit">Add to My Favorites</button>
             </div>
 
             <br>
@@ -188,25 +132,6 @@
         <div class="col-lg-1"></div>
     </div>
 
-
-      <!--Favorites Modal--> 
-      <div class="modal fade" id="favoritesModal" tabindex="-1" role="dialog" aria-labelledby="favoritesModallabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h3 id="favoritesModallabel"><strong> My Favorites</strong></h3>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
-                </div>
-                <div id="favorites-content">
-                    <p>
-                            <span id="favoritesDisplay"></span>
-                    </p>
-                </div>
-              </div>
-            </div>
-          </div>
 
     <script>
 
